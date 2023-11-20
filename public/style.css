@@ -1,3 +1,200 @@
-h1{
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background-color: #272727;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+
+header {
+    background-color: #016d82;
+    padding: 4rem;
+    margin: 1rem;
+    text-align: center;
+    border-radius: 2px;
+}
+
+header h1 {
+    margin-bottom: 15px;
+    font-size: 40px;
+}
+
+input {
+    margin: 0;
+    border: none;
+    border-radius: 2px;
+    width: 75%;
+    padding: .6rem;
+    font-size: 1rem;
+    outline: none;
+    background-color: #272727;
+    color: #fff;
+}
+
+button {
+    padding: .6rem;
+    width: 20%;
+    background-color: #272727;
+    color: #d6d5d5;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    border: none;
+}
+
+button:hover {
+    background-color: green;
+    transition: .5s ease-in-out;
+}
+
+section#tasks {
+    margin: 1rem;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    position: relative;
+    background-color: #131212;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    padding: 7px;
+    border-radius: 2px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+ul li a span {
+    color: #9a9696;
+    font-style: italic;
+    font-size: .7rem;
+    margin-left: 8px;
+}
+
+ul li:nth-child(odd) {
+    background-color: #393939;
+}
+
+ul li:hover {
+    background-color: #016d82;
+}
+
+.bi-pencil-square {
+    padding: .5rem;
+    transition: .4s ease-in-out;
+}
+
+.bi-pencil-square:hover {
+    color: rgb(0, 251, 255);
+}
+
+.bi-trash3-fill {
+    padding: .5rem;
+    transition: .4s ease-in-out;
+}
+
+.bi-trash3-fill:hover {
+    color: orangered;
+}
+
+/* Modal */
+
+section#modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000080;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+div#card {
+    width: 30rem;
+    position: relative;
+    background-color: #016d82;
+    padding: .7rem;
+    border-radius: 2px;
+}
+
+div#card h2{
+    margin: 0;
+    padding: .5rem;
+}
+
+a#close{
+    position: absolute;
+    top: .2rem;
+    right: 8px;
+    color: orangered;
+    text-decoration: none;
+    padding: .3rem;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+a#close:hover{
+    animation: shake 0.8s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+    transform: rotate(0deg);
+    }
+    25%, 75% {
+    transform: rotate(-10deg);
+    }
+    50% {
+    transform: rotate(10deg);
+    }
+}
+
+div#card p{
+    margin: 7px;
+}
+
+div#yesNo{
+    position: absolute;
+    right: 8px;
+    bottom: .5rem;
+    font-weight: 900;
+}
+
+div#yesNo #yes{
+    color: #fff;
+}
+
+div#yesNo #yes:hover{
+    color: aqua;
+}
+
+div#yesNo #no{
+    color: #fff;
+}
+
+div#yesNo #no:hover{
     color: orangered;
 }
