@@ -2,11 +2,26 @@ const mongoose = require("mongoose")
 
 const Task = require("../models/Task")
 
+let message = ""
+let type = ""
+
+
 const getAllTasks = async (req, res) => {
     try {
+        setTimeout(() => {
+            message = ""
+        }, 1000)
+        
         const taskList = await Task.find()
+        
+        return res.render("index", {
+            taskList,
+            task: null,
+            taskDelete: null,
+            message,
+            type,
+        })
 
-        return res.render("index", { taskList, task: null, taskDelete: null });
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
@@ -17,11 +32,15 @@ const createTask = async (req, res) => {
     try {
         const task = req.body
 
-        if (!task) {
+        if (!task.task) {
+            message = "Insira um texto, antes de adicionar a tarefa!"
+            type = "danger"
             return res.redirect("/")
         }
 
         await Task.create(task)
+        message = "Tarefa criada com sucesso!"
+        type = "success"
         return res.redirect("/")
 
     } catch (err) {
@@ -36,10 +55,10 @@ const getById = async (req, res) => {
 
         if (req.params.method == "update") {
             const task = await Task.findById(id)
-            return res.render("index", { task, taskDelete: null, taskList })
+            return res.render("index", { task, taskDelete: null, taskList, message, type })
         } else {
             const taskDelete = await Task.findById(id)
-            return res.render("index", { task: null, taskList, taskDelete })
+            return res.render("index", { task: null, taskList, taskDelete, message, type })
         }
 
     } catch (err) {
@@ -58,6 +77,8 @@ const updateTask = async (req, res) => {
         }
 
         await Task.updateOne({ _id: id }, task);
+        message = "Tarefa atualizada com sucesso!"
+        type = "success"
         res.redirect("/");
     } catch (err) {
         res.status(500).send({ message: err.message });
@@ -68,9 +89,28 @@ const taskDeleteOneTask = async (req, res) => {
     try {
         const id = req.params.id
 
-        await Task.deleteOne({ _id: id})
+        await Task.deleteOne({ _id: id })
+        message = "Tarefa apagada com sucesso!"
+        type = "success"
         res.redirect("/")
-    
+
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+}
+
+const taskCheck = async (req, res) => {
+    try {
+        const task = await Task.findOne({ _id: req.params.id })
+
+        if (task.check) {
+            task.check = false
+        } else {
+            task.check = true
+        }
+
+        await Task.updateOne({ _id: req.params.id }, task)
+        res.redirect("/")
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
@@ -83,4 +123,5 @@ module.exports = {
     getById,
     updateTask,
     taskDeleteOneTask,
+    taskCheck,
 }
