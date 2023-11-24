@@ -52,6 +52,13 @@ button {
     border: none;
 }
 
+@media screen and (max-width: 600px) {
+    button{
+        width: 40%;
+        margin-top: 8px;
+    }
+}
+
 button:hover {
     background-color: green;
     transition: .5s ease-in-out;
