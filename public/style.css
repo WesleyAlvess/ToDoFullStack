@@ -54,7 +54,7 @@ button {
 
 @media screen and (max-width: 600px) {
     button{
-        width: 40%;
+        width: 50px;
         margin-top: 8px;
     }
 }
