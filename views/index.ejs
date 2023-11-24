@@ -53,18 +53,7 @@
     </section>
 
     <% if ( taskDelete !== null ) { %>
-        <section id="modal">
-            <div id="card">
-                <a href="/" id="close"><i class="bi bi-x-lg"></i></a>
-                <h2>Confirmação</h2>
-                <hr>
-                <p>Deseja realmente apagar a tarefa: <%= taskDelete.task %>?</p>
-                <div id="yesNo" >
-                    <a id="no" href="/">Não</a>
-                    <a id="yes" href="/deleteTask/<%= taskDelete._id %>">Sim</a>
-                </div>
-            </div>
-        </section>
+        <%- include('./components/modalDel', {task: taskDelete}) %>
     <% } %>
 
 
